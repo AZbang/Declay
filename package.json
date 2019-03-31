@@ -1,0 +1,11 @@
+{
+  "name": "markus",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./example"
+  },
+  "author": "azbang",
+  "license": "MIT"
+}
