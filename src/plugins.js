@@ -1,15 +1,13 @@
 import { addPlugin } from './Templator';
 
-const toArgs = (value) => Array.isArray(value) ? value : [value];
-
 addPlugin('@init', (ctor, {value}) => {
   if(typeof ctor !== 'function') 
     throw Error(`Templator error: @init use only for function`);
 
   try {
-    return new ctor(...toArgs(value));
+    return new ctor(...value);
   } catch {
-    return ctor(...toArgs(value));
+    return ctor(...value);
   }
 });
 
@@ -17,7 +15,7 @@ addPlugin(/@(.+) (.+)/, (obj, {value}, method) => {
   if(typeof obj[method] !== 'function') 
     throw Error(`Templator error: ${method} is not a function`);
 
-  obj[method](...toArgs(value));
+  obj[method](...value);
   return obj;
 });
 

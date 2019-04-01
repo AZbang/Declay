@@ -1,11 +1,11 @@
 export const parseLine = (line) => {
   const depth = (line.match(/^[\t ]+/) || [''])[0]
-  const [key, value] = line.replace(depth, '').split(' ');
+  const [key, ...values] = line.replace(depth, '').split(' ');
   if(!key) return null;
   return {
     line,
     key,
-    value: value != null ? parseValue(value) : true,
+    value: values.map(v => parseValue(v)),
     depth: depth.length,
     children: [],
   }

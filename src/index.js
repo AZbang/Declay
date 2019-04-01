@@ -3,20 +3,21 @@ import './plugins';
 
 @Templator
 class Entity {
-  constructor(name) {
-    this.name = name;
+  constructor(first, last) {
+    this.firstName = first;
+    this.lastName = last;
   }
 
   sayHello(who) {
-    console.log(`Hello ${who}! My name is ${this.name}`);
+    console.log(`Hello ${who}! My name is ${this.firstName}`);
   }
 }
 
 
 const vasya = Entity`
-  @init Vasya
+  @init Vasya Pupkin
 
-  old 20
+  old 20 10 10
   like ${['apple', 'banana']}
   likeCount @${({like}) => like.length}
 
