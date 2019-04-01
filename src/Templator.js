@@ -1,96 +1,41 @@
+import Marklang from './Marklang';
 
-const parseLine = (line) => {
-  const depth = (line.match(/^[\t ]+/) || [''])[0]
-  const [key, value] = line.replace(depth, '').split(' ');
-  if(!key) return null;
-  return {
-    key,
-    value: value != null ? parseValue(value) : true,
-    depth: depth.length,
-    children: [],
+export const plugins = [];
+
+export const addPlugin = (expr, fn) => 
+  plugins.push({ pattern: expr, do: fn });
+
+export const removePlugin = (expr) => {
+  for(let i = 0; i < plugins.length; i++) {
+    if(plugins[i].pattern == expr) return plugins.splice(i, 1);
   }
 }
 
-const parseValue = (value) => {
-  if(value === 'on' || value === 'yes' || value === 'true') {
-    return true;
-  }
-  else if(value === 'off' || value === 'no' || value === 'false') {
-    return false;
-  }
-  else if(/^[-\.\+]?[0-9]+\.?([0-9]+)?$/.test(value)) {
-    return Number(value);
-  }
-  return value;
-}
-
-const normilizeDepth = (props) => {
-  const depth = Math.min(...props.map(p => p.depth));
-  return ([...props]).map(p => ({...p, depth: p.depth-depth }));
-}
-
-const parseLines = (lines) =>
-  lines.reduce((presets, line) => {
-    const preset = parseLine(line);
-    return preset ? presets.concat(preset) : presets;
-  }, []);
-
-const generateTree = (props) => {
-  const presets = [...props];
-  let tree = [];
-
-  for(let i = presets.length-1; i >= 0; i--) {
-    for(let j = i-1; j >= 0; j--) {
-      let parent = presets[j];
-      let child = presets[i];
-
-      if(child.depth === 0) {
-        tree.unshift(child);
-        break;
-      }
-      if(parent.depth < child.depth) {
-        parent.children.unshift(child);
-        break;
-      }
-    }
-  }
-  tree.unshift(presets[0])
-  return tree;  
-}
-
-const templateTree = (tree) => {
-  const props = {};
-
-  tree.forEach((prop) => {
-    const args = prop.children.length ? templateTree(prop.children) : null;
-
-    if(typeof prop.value === 'function') {
-      try { props[prop.key] = new value(args) } 
-      catch { props[prop.key] = prop.value(args) }
-
-    } else if(typeof prop.value === 'object') {
-      props[prop.key] = Object.assign({}, args, prop.value);
-  
-    } else {
-      props[prop.key] = args || prop.value;
-    }
+export const assign = (entity, props) => {
+  let obj = entity;
+  props.forEach(prop => {
+    obj = assignProp(obj, prop);
+    if(obj[prop.key] && prop.children.length) 
+      assign(obj[prop.key], prop.children);
   });
-
-  return props;
+  return obj
 }
 
-const Templator = (strs, ...values) => {
-  const presets = strs.reduce((res, str, i) => {
-    const lines = str.split('\n');
-    const props = normilizeDepth(parseLines(lines));
-    const last = props[props.length-1];
-    if(last) last.value = values[i];
-    
-    return res.concat(props);
-  }, []);
+const assignProp = (entity, prop) => {
+  for(let i = 0; i < plugins.length; i++) {
+    const match = prop.key.match(plugins[i].pattern);
+    if(match) return plugins[i].do(entity, prop.value, ...match.splice(1));
+  }
 
-  const tree = generateTree(presets);
-  return templateTree(tree);
+  return Object.assign(entity, { [prop.key]: prop.value });
 }
 
-module.exports = Templator;
+
+const Templator = (entity) => {
+  return (strs, ...values) => {
+    const props = Marklang(strs, ...values);
+    return assign(entity, props);
+  }
+}
+
+export default Templator;
