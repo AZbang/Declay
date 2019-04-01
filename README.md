@@ -50,7 +50,7 @@ For this there is an API:
 ```js
 import { addPlugin } from 'templator';
 
-addPlugin(/@(log|error)/, (obj, value, match, /* match2, ...*/) => {
+addPlugin(/@(log|error)/, (obj, { key, value }, match, /* match2, ...*/) => {
   console[match](value);
   return obj; // return modified object!
 });

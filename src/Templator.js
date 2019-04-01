@@ -23,8 +23,8 @@ export const assign = (entity, props) => {
 
 const assignProp = (entity, prop) => {
   for(let i = 0; i < plugins.length; i++) {
-    const match = prop.key.match(plugins[i].pattern);
-    if(match) return plugins[i].do(entity, prop.value, ...match.splice(1));
+    const match = prop.line.match(plugins[i].pattern);
+    if(match) return plugins[i].do(entity, prop, ...match.splice(1));
   }
 
   return Object.assign(entity, { [prop.key]: prop.value });

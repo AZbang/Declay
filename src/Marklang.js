@@ -3,6 +3,7 @@ export const parseLine = (line) => {
   const [key, value] = line.replace(depth, '').split(' ');
   if(!key) return null;
   return {
+    line,
     key,
     value: value != null ? parseValue(value) : true,
     depth: depth.length,
