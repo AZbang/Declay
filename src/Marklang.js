@@ -1,14 +1,20 @@
 export const parseLine = (line) => {
   const depth = (line.match(/^[\t ]+/) || [''])[0]
-  const [key, ...values] = line.replace(depth, '').split(' ');
+  const [key, ...value] = parseList(line.replace(depth, ''));
+
   if(!key) return null;
+
   return {
     line,
     key,
-    value: values.map(v => parseValue(v)),
+    value,
     depth: depth.length,
     children: [],
   }
+}
+
+export const parseList = (line) => {
+  return line.trim().split(' ').map(v => parseValue(v));
 }
 
 export const parseLines = (lines) => {
@@ -64,9 +70,17 @@ export const generateTree = (props) => {
 const Marklang = (strs, ...values) => {
   const presets = strs.reduce((res, str, i) => {
     const lines = str.split('\n');
+
+    if(lines[0] !== '') {
+      let last = res[res.length-1];
+      let list = lines.shift();
+      let args = parseList(list);
+      last.value = last.value.concat(args);
+    }
+
     const props = parseLines(lines);
     const last = props[props.length-1];
-    if(last && values[i]) last.value = values[i];
+    if(last && values[i]) last.value.push(values[i]);
     
     return res.concat(props);
   }, []);

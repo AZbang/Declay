@@ -20,8 +20,8 @@ addPlugin(/@(.+) (.+)/, (obj, {value}, method) => {
 });
 
 addPlugin(/(.+) @/, (obj, {key, value}) => {
-  if(typeof value !== 'function') 
-    throw Error(`Templator error: ${value} is not a function`);
+  if(typeof value[1] !== 'function') 
+    throw Error(`Templator error: ${value[1]} is not a function`);
 
-  return Object.assign(obj, { [key]: value.bind(obj)(obj) });
+  return Object.assign(obj, { [key]: value[1].bind(obj)(obj) });
 });

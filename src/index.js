@@ -8,8 +8,9 @@ class Entity {
     this.lastName = last;
   }
 
-  sayHello(who) {
+  sayHello(who, time) {
     console.log(`Hello ${who}! My name is ${this.firstName}`);
+    console.log(`Time ${time}`);
   }
 }
 
@@ -17,11 +18,11 @@ class Entity {
 const vasya = Entity`
   @init Vasya Pupkin
 
-  old 20 10 10
+  old 20
   like ${['apple', 'banana']}
   likeCount @${({like}) => like.length}
 
-  @sayHello Petya
+  @sayHello Petya ${Date.now()}
 `
 
 console.log(vasya);
