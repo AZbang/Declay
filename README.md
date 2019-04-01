@@ -9,12 +9,14 @@ import Templator from 'templator';
 
 @Templator
 class Entity {
-  constructor(name) {
-    this.name = name;
+  constructor(first, last) {
+    this.firstName = first;
+    this.lastName = last;
   }
 
-  sayHello(who) {
-    console.log(`Hello ${who}! My name is ${this.name}`);
+  sayHello(who, time) {
+    console.log(`Hello ${who}! My name is ${this.firstName}`);
+    console.log(`Time ${time}`);
   }
 }
 ```
@@ -22,20 +24,22 @@ class Entity {
 ### Now you can declare your class
 ```js
 const vasya = Entity`
-  @init Vasya
+  @init Vasya Pupkin
 
   old 20
   like ${['apple', 'banana']}
   likeCount @${({like}) => like.length}
 
-  @sayHello Petya
+  @sayHello Petya ${Date.now()}
 `
 
 > Hello Petya! My name is Vasya
-> Entity {name: "Vasya", old: 20, like: Array(2), likeCount: 2}
+> Time 1554155408549
+> Entity {firstName: "Vasya", lastName: "Pupkin", old: 20, like: Array(2), likeCount: 2}
+    firstName: "Vasya"
+    lastName: "Pupkin"
     like: (2) ["apple", "banana"]
     likeCount: 2
-    name: "Vasya"
     old: 20
 ```
 
@@ -43,6 +47,12 @@ const vasya = Entity`
 It seems to me that this approach will allow you to describe complex entities more succinctly and simply, 
 which is useful, for example, in gamedev, when you need to declare entity with a lot of options and 
 run different sequential scripts during object initialization.
+
+# I dont use decorators
+I understand... Well, then you have to do this:
+```js
+const TemplateEntity = Templator(EntityClass);
+```
 
 # Plugins
 All parameters in the template pass through internal plugins that can modify the incoming object. 
