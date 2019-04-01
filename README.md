@@ -46,7 +46,7 @@ const vasya = Entity`
 # Why?
 It seems to me that this approach will allow you to describe complex entities more succinctly and simply, 
 which is useful, for example, in gamedev, when you need to declare entity with a lot of options and 
-run different sequential scripts during object initialization.
+run different sequential scripts during object initialization. Example with Pixi.js in `example/pixi.js`
 
 # I dont use decorators
 I understand... Well, then you have to do this:

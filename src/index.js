@@ -1,28 +1,6 @@
-import Templator from './Templator';
+import Templator, * as manager from './Templator';
+import Marklang, * as parser from './Marklang';
 import './plugins';
 
-@Templator
-class Entity {
-  constructor(first, last) {
-    this.firstName = first;
-    this.lastName = last;
-  }
-
-  sayHello(who, time) {
-    console.log(`Hello ${who}! My name is ${this.firstName}`);
-    console.log(`Time ${time}`);
-  }
-}
-
-
-const vasya = Entity`
-  @init Vasya Pupkin
-
-  old 20
-  like ${['apple', 'banana']}
-  likeCount @${({like}) => like.length}
-
-  @sayHello Petya ${Date.now()}
-`
-
-console.log(vasya);
+export { Marklang, manager, parser };
+export default Templator;

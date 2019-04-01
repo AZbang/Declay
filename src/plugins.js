@@ -11,7 +11,9 @@ addPlugin('@init', (ctor, {value}) => {
   }
 });
 
-addPlugin(/@(.+) (.+)/, (obj, {value}, method) => {
+addPlugin(/@(.+)/, (obj, {key, value}) => {
+  const method = key.slice(1);
+
   if(typeof obj[method] !== 'function') 
     throw Error(`Templator error: ${method} is not a function`);
 

@@ -3,7 +3,6 @@ export const parseLine = (line) => {
   const [key, ...value] = parseList(line.replace(depth, ''));
 
   if(!key) return null;
-
   return {
     line,
     key,

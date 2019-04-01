@@ -27,9 +27,11 @@ const assignProp = (entity, prop) => {
     if(match) return plugins[i].do(entity, prop, ...match.splice(1));
   }
 
-  return Object.assign(entity, { 
+  if(prop.value.length) Object.assign(entity, { 
     [prop.key]: prop.value.length > 1 ? prop.value : prop.value[0] 
   });
+
+  return entity;
 }
 
 

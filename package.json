@@ -4,7 +4,7 @@
   "description": "New way of declarative description of entities using string templating",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "dev": "parcel index.html"
   },
   "author": "azbang",
   "license": "MIT",
