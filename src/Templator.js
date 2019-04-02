@@ -21,7 +21,7 @@ export const assign = (entity, props) => {
   return obj
 }
 
-const assignProp = (entity, prop) => {
+export const assignProp = (entity, prop) => {
   for(let i = 0; i < plugins.length; i++) {
     const match = prop.line.match(plugins[i].pattern);
     if(match) return plugins[i].do(entity, prop, ...match.splice(1));
