@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import Templator from 'templator'
+import { Templator, $ } from 'templator'
 
 const App = Templator(PIXI.Application);
 const Container = Templator(PIXI.Container);
@@ -8,32 +8,25 @@ const Sprite = Templator(PIXI.Sprite.fromImage);
 const appW = window.innerWidth;
 const appH = window.innerHeight;
 
-const app = App`
+App`
   @init ${appW} ${appH} ${{backgroundColor: 0xFF00FF}}
+  append @${(app) => document.body.appendChild(app.view)}
 `
-document.body.appendChild(app.view);
 
-const container = Container`
+Container`
+  #scene // TODO
+
   @init
-
-  anchor
-    @set .5
-
+  @anchor.set .5
   @setParent ${app.stage}
 `
 
-const sprite = Sprite`
+Sprite`
+  #player
+
   @init ./img.jpg
-
-  anchor
-    @set .5
-  
-  scale
-    @set .3
-
-  position
-    x ${appW/2}
-    y ${appH/2}
-
-  @setParent ${container}
+  @anchor.set .5 // TODO 
+  @scale.set .3
+  @position.set ${appW/2} ${appH/2}
+  @setParent ${$.player}
 `

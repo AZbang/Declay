@@ -1,4 +1,4 @@
-import { addPlugin } from './Templator';
+import { addPlugin, getProp } from './Templator';
 
 addPlugin('@init', (ctor, {value}) => {
   if(typeof ctor !== 'function') 
@@ -12,12 +12,12 @@ addPlugin('@init', (ctor, {value}) => {
 });
 
 addPlugin(/@(.+)/, (obj, {key, value}) => {
-  const method = key.slice(1);
+  const method = getProp(obj, key.slice(1));
 
-  if(typeof obj[method] !== 'function') 
-    throw Error(`Templator error: ${method} is not a function`);
+  if(typeof method !== 'function') 
+    throw Error(`Templator error: ${key.slice(1)} is not a function`);
 
-  obj[method](...value);
+  method(...value);
   return obj;
 });
 

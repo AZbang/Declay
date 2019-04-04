@@ -27,13 +27,28 @@ export const assignProp = (entity, prop) => {
     if(match) return plugins[i].do(entity, prop, ...match.splice(1));
   }
 
-  if(prop.value.length) Object.assign(entity, { 
-    [prop.key]: prop.value.length > 1 ? prop.value : prop.value[0] 
-  });
+
+  if(prop.value.length) {
+    const valuedata = prop.value.length > 1 ? prop.value : prop.value[0];
+    setProp(entity, prop.key, value);
+  }
 
   return entity;
 }
 
+export const getProp = (entity, prop) =>
+  prop.split('.').reduce((temp, key) => temp[key], entity);
+
+export const setProp = (entity, prop, value) => {
+  const keys = prop.split('.');
+  const last = keys.pop();
+  const entry = keys.reduce((temp, key) => {
+    if(typeof temp[key] !== 'object') temp[key] = {};
+    return temp[key];
+  }, entity);
+
+  entry[last] = value;
+}
 
 const Templator = (entity) => {
   return (strs, ...values) => {
