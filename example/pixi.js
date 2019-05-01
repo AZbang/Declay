@@ -1,20 +1,16 @@
-import * as PIXI from 'pixi.js'
-import { Templator, $ } from 'templator'
-
-const App = Templator(PIXI.Application);
-const Container = Templator(PIXI.Container);
-const Sprite = Templator(PIXI.Sprite.fromImage);
+import { App, Container, Sprite } from 'templator/pixi'
+import $ from 'templator/get
 
 const appW = window.innerWidth;
 const appH = window.innerHeight;
 
 App`
   @init ${appW} ${appH} ${{backgroundColor: 0xFF00FF}}
-  append @${(app) => document.body.appendChild(app.view)}
+  @append ${document.body}
 `
 
 Container`
-  #scene // TODO
+  #scene
 
   @init
   @anchor.set .5
@@ -25,8 +21,16 @@ Sprite`
   #player
 
   @init ./img.jpg
-  @anchor.set .5 // TODO 
+  @anchor.set .5
   @scale.set .3
   @position.set ${appW/2} ${appH/2}
   @setParent ${$.player}
+
+  @tick ${(pl) => {
+    $.scene.rotation += .01;
+  }}
+
+  @on keyup ${(pl) => {
+    
+  }}
 `

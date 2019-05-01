@@ -58,7 +58,7 @@ const TemplateEntity = Templator(EntityClass);
 All parameters in the template pass through internal plugins that can modify the incoming object. 
 For this there is an API:
 ```js
-import { addPlugin } from 'templator';
+import { addPlugin } from 'templator/plugins';
 
 addPlugin(/@(log|error)/, (obj, { key, value }, match, /* match2, ...*/) => {
   console[match](value);

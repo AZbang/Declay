@@ -1,4 +1,4 @@
-import Templator from 'Templator';
+import Templator from 'templator';
 
 @Templator
 class Entity {
