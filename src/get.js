@@ -1,9 +1,9 @@
 export const $ = {};
 
 export const add = (el, selector) => {
-    $[selector] = el;
-}
+  $[selector] = el;
+};
 
-export const remove = (selector) => {
-    delete $[selector];
-}
+export const remove = selector => {
+  delete $[selector];
+};
