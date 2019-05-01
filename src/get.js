@@ -1,4 +1,4 @@
-export const $ = {};
+const $ = {};
 
 export const add = (el, selector) => {
   $[selector] = el;
@@ -7,3 +7,5 @@ export const add = (el, selector) => {
 export const remove = selector => {
   delete $[selector];
 };
+
+export default $;

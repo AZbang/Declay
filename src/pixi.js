@@ -1,7 +1,7 @@
 import PIXI from "pixi.js";
 import Templator from "./templator";
 
-class App extends PIXI.Application {
+class Application extends PIXI.Application {
   constructor(w, h, options) {
     super(w, h, options);
   }
@@ -19,13 +19,11 @@ class App extends PIXI.Application {
   }
 }
 
-const Sprite = texture => {
+const PixiSprite = texture => {
   if (texture instanceof PIXI.Texture) return new PIXI.Sprite(texture);
   else PIXI.Spite.fromImage(texture);
 };
 
-export default {
-  App: Templator(App),
-  Sprite: Templator(Sprite),
-  Container: Templator(PIXI.Container)
-};
+export const App = Templator(Application);
+export const Sprite = Templator(PixiSprite);
+export const Container = Templator(PIXI.Container);

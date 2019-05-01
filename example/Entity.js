@@ -1,4 +1,4 @@
-import Templator from 'templator';
+import Templator from "src/templator";
 
 @Templator
 class Entity {
@@ -13,14 +13,4 @@ class Entity {
   }
 }
 
-const vasya = Entity`
-  @init Vasya Pupkin
-
-  old 20
-  like ${['apple', 'banana']}
-  likeCount @${({like}) => like.length}
-
-  @sayHello Petya ${Date.now()}
-`
-
-console.log(vasya);
+export default Entity;

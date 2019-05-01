@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add rollup-plugin-serve rollup-plugin-alias --dev
 
 PATH: 
   /home/azbang/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/azbang/.dotnet/tools
@@ -14,14 +14,14 @@ Platform:
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/azbang/markus/node_modules/jest-runner/node_modules/jest-docblock'
+  Error: EACCES: permission denied, unlink '/home/azbang/markus/node_modules/@babel/core/node_modules/json5/CHANGELOG.md'
 
 npm manifest: 
   {
     "name": "templator",
     "version": "0.1.0",
     "description": "New way of declarative description of entities using string templating",
-    "main": "src/templator.js",
+    "main": "src/index.js",
     "scripts": {
       "build": "rollup -c",
       "lint": "eslint src/",
@@ -31,17 +31,18 @@ npm manifest:
     "author": "azbang",
     "license": "MIT",
     "devDependencies": {
-      "eslint-config-prettier": "^2.9.0",
-      "eslint-plugin-prettier": "^2.6.0",
-      "eslint-plugin-security": "^1.4.0",
-      "prettier": "^1.12.1",
       "@babel/core": "^7.4.0",
       "@babel/plugin-proposal-decorators": "^7.4.0",
       "@babel/preset-env": "^7.4.2",
       "babel-core": "^6.26.3",
+      "babel-eslint": "^10.0.1",
       "babel-plugin-transform-class-properties": "^6.24.1",
       "babel-preset-env": "^1.7.0",
+      "eslint-config-prettier": "^2.9.0",
+      "eslint-plugin-prettier": "^2.6.0",
+      "eslint-plugin-security": "^1.4.0",
       "jest": "^24.6.0",
+      "prettier": "^1.12.1",
       "rollup": "^1.10.1",
       "rollup-plugin-babel": "^4.3.2",
       "rollup-plugin-eslint": "^5.1.0"
@@ -1091,6 +1092,18 @@ Lockfile:
       slash "^1.0.0"
       source-map "^0.5.7"
   
+  babel-eslint@^10.0.1:
+    version "10.0.1"
+    resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.1.tgz#919681dc099614cd7d31d45c8908695092a1faed"
+    integrity sha512-z7OT1iNV+TjOwHNLLyJk+HN+YVWX+CLE6fPD2SymJZOZQBs+QIexFjhm4keGTm8MW9xr4EC9Q0PbaLB24V5GoQ==
+    dependencies:
+      "@babel/code-frame" "^7.0.0"
+      "@babel/parser" "^7.0.0"
+      "@babel/traverse" "^7.0.0"
+      "@babel/types" "^7.0.0"
+      eslint-scope "3.7.1"
+      eslint-visitor-keys "^1.0.0"
+  
   babel-generator@^6.26.0:
     version "6.26.1"
     resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-6.26.1.tgz#1844408d3b8f0d35a404ea7ac180f087a601bd90"
@@ -2122,6 +2135,36 @@ Lockfile:
     optionalDependencies:
       source-map "~0.6.1"
   
+  eslint-config-prettier@^2.9.0:
+    version "2.10.0"
+    resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.10.0.tgz#ec07bc1d01f87d09f61d3840d112dc8a9791e30b"
+    integrity sha512-Mhl90VLucfBuhmcWBgbUNtgBiK955iCDK1+aHAz7QfDQF6wuzWZ6JjihZ3ejJoGlJWIuko7xLqNm8BA5uenKhA==
+    dependencies:
+      get-stdin "^5.0.1"
+  
+  eslint-plugin-prettier@^2.6.0:
+    version "2.7.0"
+    resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.7.0.tgz#b4312dcf2c1d965379d7f9d5b5f8aaadc6a45904"
+    integrity sha512-CStQYJgALoQBw3FsBzH0VOVDRnJ/ZimUlpLm226U8qgqYJfPOY/CPK6wyRInMxh73HSKg5wyRwdS4BVYYHwokA==
+    dependencies:
+      fast-diff "^1.1.1"
+      jest-docblock "^21.0.0"
+  
+  eslint-plugin-security@^1.4.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/eslint-plugin-security/-/eslint-plugin-security-1.4.0.tgz#d4f314484a80b1b613b8c8886e84f52efe1526c2"
+    integrity sha512-xlS7P2PLMXeqfhyf3NpqbvbnW04kN8M9NtmhpR3XGyOvt/vNKS7XPXT5EDbwKW9vCjWH4PpfQvgD/+JgN0VJKA==
+    dependencies:
+      safe-regex "^1.1.0"
+  
+  eslint-scope@3.7.1:
+    version "3.7.1"
+    resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
+    integrity sha1-PWPD7f2gLgbgGkUq2IyqzHzctug=
+    dependencies:
+      esrecurse "^4.1.0"
+      estraverse "^4.1.1"
+  
   eslint-scope@^4.0.3:
     version "4.0.3"
     resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-4.0.3.tgz#ca03833310f6889a3264781aa82e63eb9cfe7848"
@@ -2336,6 +2379,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
     integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
   
+  fast-diff@^1.1.1:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.2.0.tgz#73ee11982d86caaf7959828d519cfe927fac5f03"
+    integrity sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==
+  
   fast-json-stable-stringify@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
@@ -2451,6 +2499,11 @@ Lockfile:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
     integrity sha512-3t6rVToeoZfYSGd8YoLFR2DJkiQrIiUrGcjvFX2mDw3bn6k2OtwHN0TNCLbBO+w8qTvimhDkv+LSscbJY1vE6w==
+  
+  get-stdin@^5.0.1:
+    version "5.0.1"
+    resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
+    integrity sha1-Ei4WFZHiH/TFJTAwVpPyDmOTo5g=
   
   get-stream@^4.0.0:
     version "4.1.0"
@@ -3012,6 +3065,11 @@ Lockfile:
       diff-sequences "^24.3.0"
       jest-get-type "^24.3.0"
       pretty-format "^24.6.0"
+  
+  jest-docblock@^21.0.0:
+    version "21.2.0"
+    resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
+    integrity sha512-5IZ7sY9dBAYSV+YjQ0Ovb540Ku7AO9Z5o2Cg789xj167iQuZ2cG+z0f3Uct6WeYLbU6aQiM2pCs7sZ+4dotydw==
   
   jest-docblock@^24.3.0:
     version "24.3.0"
@@ -3990,6 +4048,11 @@ Lockfile:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
     integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
+  
+  prettier@^1.12.1:
+    version "1.17.0"
+    resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.17.0.tgz#53b303676eed22cc14a9f0cec09b477b3026c008"
+    integrity sha512-sXe5lSt2WQlCbydGETgfm1YBShgOX4HxQkFPvbxkcwgDvGDeqVau8h+12+lmSVlP3rHPz0oavfddSZg/q+Szjw==
   
   pretty-format@^24.6.0:
     version "24.6.0"
