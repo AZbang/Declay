@@ -41,7 +41,7 @@ export const setProp = (entity, prop, value) => {
 const Templator = entity => {
   return (strs, ...values) => {
     const props = Marklang(strs, ...values);
-    return assign(entity, props);
+    return () => assign(entity, props);
   };
 };
 

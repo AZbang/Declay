@@ -1,40 +1,40 @@
-import { App, Container, Sprite } from "../src/pixi";
+import { App, TileSprite, Scenes, Container, Text } from "../src/pixi";
+import { repeat } from "../src/utils";
 import $ from "../src/get";
-import Entity from "./Entity";
 
-const appW = window.innerWidth;
-const appH = window.innerHeight;
+import { enemy, player } from "./entities";
 
-App`
-  #app
-  @init ${appW} ${appH} ${{ backgroundColor: 0xff00ff }}
+App`#app
+  @init ${{ backgroundColor: 0xff00ff }}
+  width ${window.innerWidth}
+  height ${window.innerHeight}
   @append ${document.body}
-`;
 
-Container`
-  #scene
-  @init
-  @anchor.set .5
-  @setParent ${$.app.stage}
-`;
+  ${Scenes`#scenes
+    ${Container`#menu
+      ${TileSprite`
+        @init 
+        width ${$.app.width}
+        height ${$.app.height}
+        @on update ${self => (self.tile.x += 10)}
+      `}
+      ${Text`
+        text | Start game
+        @position.set ${$.app.width / 2} ${$.app.height / 2}
+        @anchor.set .5
+        @on click ${() => $.scenes.goto("#playground")}
+      `}
+    `}
+    ${Container`#playground
+      ${Text`
+        text | Text node
+        @position.set 20 20
+        @anchor.set 0
+        @on click ${() => $.scenes.goto("#menu")}
+      `}
 
-Sprite`
-  #player
-  @init ./img.jpg
-  @anchor.set .5
-  @scale.set .3
-  @position.set ${appW / 2} ${appH / 2}
-  @setParent ${$.scene}
-`;
-
-const vasya = Entity`
-  @init Vasya Pupkin
-
-  old 20
-  like ${["apple", "banana"]}
-  likeCount @${({ like }) => like.length}
-
-  @sayHello Petya ${Date.now()}
-`;
-
-console.log(vasya);
+      ${player}
+      ${repeat(10, i => enemy)}
+    `}
+  `}
+`();
