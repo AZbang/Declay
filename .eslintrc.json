@@ -6,7 +6,6 @@
     "codeFrame": false
   },
   "extends": [
-    "plugin:security/recommended",
     "plugin:prettier/recommended"
   ],
   "plugins": ["prettier", "security"],

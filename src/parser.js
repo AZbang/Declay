@@ -2,11 +2,10 @@ export const parseLine = line => {
   const depth = (line.match(/^[\t ]+/) || [""])[0];
   const [key, ...value] = parseList(line.replace(depth, ""));
 
-  if (!key) return null;
   return {
     line,
     key,
-    value,
+    value: value || [],
     depth: depth.length,
     children: []
   };
@@ -80,7 +79,11 @@ const Marklang = (strs, ...values) => {
 
     const props = parseLines(lines);
     const last = props[props.length - 1];
-    if (last && values[i]) last.value.push(values[i]);
+
+    if (values[i] && last) {
+      if (last.key) last.value.push(values[i]);
+      else last.entity = values[i];
+    }
 
     return res.concat(props);
   }, []);

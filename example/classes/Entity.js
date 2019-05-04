@@ -1,8 +1,8 @@
-import { Sprite } from "../../src/pixi";
+import PIXI from "pixi.js";
 import Templator from "../../src/templator";
 
 @Templator
-class Entity extends Sprite {
+class Entity extends PIXI.Sprite {
   constructor(parent) {
     this.parent = parent;
     this.speed = 1;

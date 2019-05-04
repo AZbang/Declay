@@ -12,12 +12,12 @@ addPlugin("@init", (ctor, { value }) => {
   } catch (e) {
     entity = ctor(...value);
   }
-  if (ctor._id) add(entity, ctor._id);
+  if (ctor.id) add(entity, ctor.id);
   return entity;
 });
 
-addPlugin(/^#(.+)/, (obj, { key }) => {
-  obj._id = key;
+addPlugin(/#(.+)/, (obj, { key }) => {
+  obj.id = key;
   return obj;
 });
 

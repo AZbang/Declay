@@ -1,8 +1,8 @@
-import { Sprite } from "../../src/pixi";
+import PIXI from "pixi.js";
 import Templator from "../../src/templator";
 
 @Templator
-class Level extends Container {
+class Level extends PIXI.Container {
   constructor(parent) {
     this.parent = parent;
     this.map = 1;
@@ -10,11 +10,11 @@ class Level extends Container {
   }
 
   // render declarative enitites
-  __addView(entities = []) {
+  __addEntities(entities = []) {
     entities.forEach(entity => this.addChild(entity(this)));
   }
 
   renderMap(map) {}
 }
 
-export default Entity;
+export default Level;

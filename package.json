@@ -4,7 +4,7 @@
   "description": "New way of declarative description of entities using string templating",
   "main": "src/index.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --watch",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix --max-warnings=0 --no-ignore",
     "test": "jest"
@@ -21,12 +21,12 @@
     "babel-preset-env": "^1.7.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-security": "^1.4.0",
     "jest": "^24.6.0",
     "prettier": "^1.12.1",
     "rollup": "^1.10.1",
     "rollup-plugin-alias": "^1.5.1",
     "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-bundle-html": "^0.1.5",
     "rollup-plugin-eslint": "^5.1.0",
     "rollup-plugin-serve": "^1.0.1"
   }

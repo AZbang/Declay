@@ -1,4 +1,4 @@
-import { Entity } from "./classes/Entity";
+import Entity from "./classes/Entity";
 
 const enemy = Entity`
   @init
