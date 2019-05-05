@@ -6,7 +6,7 @@ import { enemy, player } from "./entities";
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-const app = App`#app
+App`#app
   @init 
     width ${width} 
     height ${height}
@@ -41,5 +41,3 @@ const app = App`#app
     `}
   `}
 `();
-
-console.log($);

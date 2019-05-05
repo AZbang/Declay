@@ -1,5 +1,38 @@
 # Templator
 > New way of declarative description of entities using string templating and decorators
+```js
+// Pixi.js declarative app
+App`#app
+  @init 
+    backgroundColor 0xff00ff
+  @append ${document.body}
+
+  ${Scenes`#scenes
+    @goto menu
+
+    ${Block`#menu
+      fill 0xFFFFFF
+
+      ${Button`
+        @init ${"Start game"}
+        @position.set ${width / 2} ${height / 2}
+        @on click ${() => $.scenes.goto("playground")}
+        @text.anchor.set .5
+      `}
+    `}
+    ${Block`#playground
+      fill 0x00FFFF
+
+      ${Button`
+        @init ${"Menu"}
+        @position.set 20 20
+        @on click ${() => $.scenes.goto("menu")}
+      `}
+    `}
+  `}
+`();
+```
+
 
 # Using
 
