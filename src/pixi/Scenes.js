@@ -7,7 +7,7 @@ class Scenes extends PIXI.Container {
   active = null;
 
   __addEntities(scenes = []) {
-    scenes.forEach(scene => this.scenes.add(scene.id, scene));
+    scenes.forEach(scene => this.scenes.set(scene.id, scene));
   }
   goto(id, params) {
     if (this.active) this.removeChild(this.active);

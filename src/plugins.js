@@ -1,4 +1,4 @@
-import { getProp } from "./templator";
+import { getProp, createObjectByProps } from "./templator";
 import { add } from "./get";
 
 export const plugins = [];
@@ -10,17 +10,20 @@ export const removePlugin = expr => {
 };
 
 addPlugin(/#(.+)/, (obj, { key }) => {
-  add(obj, key.slice(1));
+  obj.id = key.slice(1);
+  add(obj, obj.id);
   return obj;
 });
 
-addPlugin(/@(.+)/, (obj, { key, value }) => {
+addPlugin(/@(.+)/, (obj, { key, value, children }) => {
   const method = getProp(obj, key.slice(1));
 
   if (typeof method !== "function")
     throw Error(`Templator error: ${key.slice(1)} is not a function`);
 
-  method.bind(obj)(...value);
+  if (children.length) method(...createObjectByProps(children));
+  else method(...value);
+
   return obj;
 });
 

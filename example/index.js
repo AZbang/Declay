@@ -1,4 +1,4 @@
-import { App, TilingSprite, Scenes, Container, Text } from "../src/pixi/index";
+import { App, TilingSprite, Scenes, Block, Text } from "../src/pixi/index";
 import { repeat } from "../src/utils";
 import $ from "../src/get";
 import { enemy, player } from "./entities";
@@ -7,33 +7,38 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 
 const app = App`#app
-  @init ${width} ${height} ${{ backgroundColor: 0xff00ff }}
+  @init 
+    width ${width} 
+    height ${height}
+    backgroundColor 0xff00ff
   @append ${document.body}
 
+  pos
+    x 10
+    y 20
+
   ${Scenes`#scenes
-    ${Container`#menu
-      ${TilingSprite`
-        @init 
-        width ${width}
-        height ${height}
-        @on update ${self => (self.tile.x += 10)}
-      `}
+    @goto menu
+
+    ${Block`#menu
       ${Text`
         text | Start game
+        interactive on
+        buttonMode on
         @position.set ${width / 2} ${height / 2}
         @anchor.set .5
-        @on click ${() => $.scenes.goto("#playground")}
+        @on click ${() => $.scenes.goto("playground")}
       `}
     `}
-    ${Container`#playground
+    ${Block`#playground
       ${Text`
         text | Text node
         @position.set 20 20
         @anchor.set 0
-        @on click ${() => $.scenes.goto("#menu")}
+        interactive on
+        buttonMode on
+        @on click ${() => $.scenes.goto("menu")}
       `}
-      ${player}
-      ${repeat(10, i => enemy)}
     `}
   `}
 `();
