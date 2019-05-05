@@ -1,14 +1,17 @@
 import Marklang from "./parser";
 import { plugins } from "./plugins";
 
-export const assign = (entity, props) => {
-  let obj = entity;
+export const assign = (obj, props) => {
+  const init = props.find(prop => prop.key === "@init");
+  let entity = initEntity(obj, init ? init.value : []);
+
   props.forEach(prop => {
-    obj = assignProp(obj, prop);
-    if (obj[prop.key] && prop.children.length)
-      assign(obj[prop.key], prop.children);
+    if (prop.key === "@init") return;
+    entity = assignProp(entity, prop);
+    if (entity[prop.key] && prop.children.length)
+      assign(entity[prop.key], prop.children);
   });
-  return obj;
+  return entity;
 };
 
 export const assignProp = (entity, prop) => {
@@ -39,10 +42,20 @@ export const setProp = (entity, prop, value) => {
   entry[last] = value;
 };
 
+/** Initalize class or function */
+export const initEntity = (ctor, args) => {
+  let entity;
+  try {
+    entity = new ctor(...args);
+  } catch (e) {
+    entity = ctor(...args);
+  }
+  return entity;
+};
+
 const Templator = entity => {
   return (strs, ...values) => {
     const props = Marklang(strs, ...values);
-    console.log(props);
     return () => assign(entity, props);
   };
 };

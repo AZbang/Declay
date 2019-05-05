@@ -37,3 +37,5 @@ const app = App`#app
     `}
   `}
 `();
+
+console.log($);
