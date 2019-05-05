@@ -3,7 +3,6 @@ import * as plugins from "./plugins";
 import * as parser from "./parser";
 import * as pixi from "./pixi";
 import * as get from "./get";
-import "./marklang";
 
 export default {
   templator,

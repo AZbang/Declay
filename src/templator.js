@@ -1,4 +1,5 @@
 import Marklang from "./parser";
+import { plugins } from "./plugins";
 
 export const assign = (entity, props) => {
   let obj = entity;
@@ -41,6 +42,7 @@ export const setProp = (entity, prop, value) => {
 const Templator = entity => {
   return (strs, ...values) => {
     const props = Marklang(strs, ...values);
+    console.log(props);
     return () => assign(entity, props);
   };
 };

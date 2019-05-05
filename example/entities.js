@@ -1,7 +1,7 @@
 import Entity from "./classes/Entity";
 
 const enemy = Entity`
-  @init
+  @init ${1} ${2} ${3} 4 5
   x @${() => Math.random() * 1000}
   y @${() => Math.random() * 1000}
 

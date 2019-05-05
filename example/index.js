@@ -1,14 +1,12 @@
 import { App, TilingSprite, Scenes, Container, Text } from "../src/pixi/index";
 import { repeat } from "../src/utils";
 import $ from "../src/get";
-import "../src/marklang";
-
 import { enemy, player } from "./entities";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-App`#app
+const app = App`#app
   @init ${width} ${height} ${{ backgroundColor: 0xff00ff }}
   @append ${document.body}
 

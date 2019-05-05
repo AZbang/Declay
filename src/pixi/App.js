@@ -1,7 +1,6 @@
 import PIXI from "pixi.js";
 import Templator from "../templator";
 
-@Templator
 class App extends PIXI.Application {
   constructor(w, h, options) {
     super(w, h, options);
@@ -21,8 +20,9 @@ class App extends PIXI.Application {
     this.renderer.backgroundColor = v;
   }
   append(parent) {
+    console.log(this);
     parent.appendChild(this.view);
   }
 }
 
-export default App;
+export default Templator(App);
