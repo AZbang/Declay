@@ -76,6 +76,7 @@ export const setProp = (entity, prop, value) => {
 
 /** Initalize class or function */
 export const initEntity = (ctor, args) => {
+  if (typeof ctor !== "function") return ctor;
   let entity;
   try {
     entity = new ctor(...args);
@@ -91,7 +92,9 @@ const Templator = entity => {
     const init = () => assign(entity, props);
 
     // bind id to init fn
-    const idProp = props.find(prop => prop.key.match(/#(.+)/));
+    const idProp = props.find(
+      prop => typeof prop.key === "string" && prop.key.match(/#(.+)/)
+    );
     init.id = idProp ? idProp.key.slice(1) : null;
     return init;
   };

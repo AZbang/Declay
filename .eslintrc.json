@@ -5,10 +5,8 @@
     "allowImportExportEverywhere": false,
     "codeFrame": false
   },
-  "extends": [
-    "plugin:prettier/recommended"
-  ],
-  "plugins": ["prettier", "security"],
+  "extends": ["plugin:prettier/recommended"],
+  "plugins": ["prettier"],
   "env": {
     "browser": true,
     "jest": true

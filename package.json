@@ -29,5 +29,9 @@
     "rollup-plugin-bundle-html": "^0.1.5",
     "rollup-plugin-eslint": "^5.1.0",
     "rollup-plugin-serve": "^1.0.1"
+  },
+  "dependencies": {
+    "hotkeys-js": "^3.6.8",
+    "keymaster": "^1.6.2"
   }
 }

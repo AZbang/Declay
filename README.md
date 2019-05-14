@@ -100,6 +100,34 @@ addPlugin(/@(log|error)/, (obj, { key, value }, match, /* match2, ...*/) => {
 
 ```
 
+# TODO
+1. Refactoring. Rewrite templator and parser
+2. Add mixins suport, like
+```js
+  Enity`
+    @${PlayerBehavior}
+    @${SolidBody} 10 10 50 50 // yeah, mixin arguments!
+```
+3. Add subfunctions for callback support, like
+```js
+  Entity`
+    @on click
+      ${self => self.wow()}
+      @method1
+      @do2 
+  `
+```
+4. Pixi.js full support
+5. Write cool demo!
+6. Add flow methods with promises support, like
+```js
+  Entity`
+    @flow
+      @method
+      @hello // wait complete 'method'
+      @goodbuy // wait complete 'hello' 
+  `
+```
 # Author
 * **Andrey Zhevlakov | @azbang**
 * **azbangwtf@ya.ru**
