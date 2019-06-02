@@ -30,4 +30,10 @@ describe("test parser functions", () => {
   it("test parseList", () => {
     expect(parseList(" 10 hello on   ")).toEqual([10, "hello", true]);
   });
+
+  it("test concatTemplateStrings", () => {
+    expect(concatTemplateStrings(["app ", "\n prop\n", " arg"])).toEqual(
+      "app $1\n prop\n$2 arg"
+    );
+  });
 });
