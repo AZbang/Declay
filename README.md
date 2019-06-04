@@ -1,10 +1,10 @@
-# Templator
+# Declay
 > New way of declarative description of entities using string templating and decorators
+
 ```js
 App`#app
-  @init 
-    backgroundColor 0xff00ff
   @append ${document.body}
+  renderer.backgroundColor 0xff00ff
 
   ${Scenes`#scenes
     @goto menu
@@ -13,7 +13,7 @@ App`#app
       fill 0xFFFFFF
 
       ${Button`
-        @init ${"Start game"}
+        text | Start game
         @position.set ${width / 2} ${height / 2}
         @on click ${() => $.scenes.goto("playground")}
         @text.anchor.set .5
@@ -23,7 +23,7 @@ App`#app
       fill 0x00FFFF
 
       ${Button`
-        @init ${"Menu"}
+        text Menu
         @position.set 20 20
         @on click ${() => $.scenes.goto("menu")}
       `}
@@ -35,13 +35,13 @@ App`#app
 # Why?
 It seems to me that this approach will allow you to describe complex entities more succinctly and simply, 
 which is useful, for example, in gamedev, when you need to declare entity with a lot of options and 
-run different sequential scripts during object initialization. Example with Pixi.js in `example/pixi.js`
+run different sequential scripts during object initialization.
 
 # Packages
 * declay - templating and parsing your Declay structure
 * declay-pixi - Declay wrap for Pixi.js
-* declay-app - Declay mixins for game engine
-* declay-example - Example game project writed on Declay
+* declay-app - Declay mixins for game engine (TODO)
+* declay-game - Example game project writed on Declay
 
 # TODO
 1. Refactoring. Rewrite templator and parser **(WIP)**
