@@ -1,25 +1,13 @@
-import Entity from "./classes/Entity";
+import Entity from "./Entity";
 
 const enemy = Entity`
-  @init ${1} ${2} ${3} 4 5
+  > ${1} ${2} ${3} 4 5
   x @${() => Math.random() * 1000}
   y @${() => Math.random() * 1000}
-
-  @flow repeat
-    @move top
-    @delay 1000
-    @move left
-    @delay 1000
-    @move bottom
-    @delay 1000
-    @move right
 `;
 
 const player = Entity`
-  @init
-  x 10
-  y 10
-
+  @position.set 10 10
   @on press A ${self => self.left()}
   @on press D ${self => self.right()}
   @on press W ${self => self.top()}

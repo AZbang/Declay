@@ -1,7 +1,7 @@
 import PIXI from "pixi.js";
-import Templator from "../../src/templator";
+import Declay from "declay";
 
-@Templator
+@Declay
 class Level extends PIXI.Container {
   constructor(parent) {
     this.parent = parent;

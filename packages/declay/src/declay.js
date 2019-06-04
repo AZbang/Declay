@@ -26,7 +26,7 @@ export const computeValue = (prop, variables) => {
 export const cancatTemplateStrings = strs =>
   strs.reduce((mark, str, i) => (mark += `${str}%${i}`), "");
 
-export const Templator = entity => (strings, locals) => {
+export default entity => (strings, locals) => {
   const markup = concatTemplateStrings(strings);
   const ast = parse(markup, locals);
 

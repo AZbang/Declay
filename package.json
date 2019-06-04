@@ -1,38 +1,19 @@
 {
-  "name": "templator",
-  "version": "0.1.0",
+  "name": "declay",
+  "version": "1.0.0",
   "description": "New way of declarative description of entities using string templating",
-  "main": "src/index.js",
-  "scripts": {
-    "build": "rollup -c --watch",
-    "lint": "eslint src/",
-    "lint:fix": "eslint src/ --fix --max-warnings=0 --no-ignore",
-    "test": "jest"
-  },
   "author": "azbang",
   "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/plugin-proposal-decorators": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
-    "jest": "^24.6.0",
-    "prettier": "^1.12.1",
-    "rollup": "^1.10.1",
-    "rollup-plugin-alias": "^1.5.1",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-bundle-html": "^0.1.5",
-    "rollup-plugin-eslint": "^5.1.0",
-    "rollup-plugin-serve": "^1.0.1"
+  "private": true,
+  "scripts": {
+    "test": "lerna run test --stream",
+    "update:version": "lerna version --no-push"
   },
-  "dependencies": {
-    "flow-bin": "^0.98.1",
-    "hotkeys-js": "^3.6.8",
-    "keymaster": "^1.6.2"
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "lerna": "^3.14.1"
   }
 }

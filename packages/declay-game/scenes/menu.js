@@ -1,10 +1,11 @@
-export default
-Block`#menu
+import { Block, Text } from "declay-pixi";
+
+const menu = Block`#menu
   fill 0xFFFFFF
   @size ${width} ${height}
   
   ${Block`
-    @on click ${() => $.scenes.goto("playground")}
+    @on click ${(self) => self.parent.goto("playground")}
     @position.set ${width / 2} ${height / 2}
     @size 200 200
     @pivot.set 100 100
@@ -22,7 +23,7 @@ Block`#menu
   `}
 
   ${Block`
-    @on click ${() => $.scenes.goto("playground")}
+    @on click ${(self) => self.parent.goto("playground")}
     @position.set 200 200
     @size 200 200
     @pivot.set 100 100
@@ -31,10 +32,7 @@ Block`#menu
     interactive on
     buttonMode on
     ${Text`
-      text 
-        | Hello 
-        | Bitch!
-  
+      text Text
       @position.set 100 100
       @anchor.set .5
       style
@@ -43,3 +41,5 @@ Block`#menu
     `}
   `}
 `
+
+export default menu;

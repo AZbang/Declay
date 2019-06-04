@@ -1,0 +1,17 @@
+{
+  "name": "declay",
+  "version": "1.0.0",
+  "description": "New way of declarative description of entities using string templating",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --colors"
+  },
+  "keywords": [
+    "declarative",
+    "template",
+    "strings",
+    "enities"
+  ],
+  "author": "azbang",
+  "license": "MIT"
+}

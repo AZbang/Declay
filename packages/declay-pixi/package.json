@@ -1,0 +1,22 @@
+{
+  "name": "declay-pixi",
+  "version": "1.0.0",
+  "description": "Declarative pixi by Declay",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "declay": "^1.0.0"
+  },
+  "keywords": [
+    "declarative",
+    "template",
+    "strings",
+    "enities",
+    "pixi",
+    "declay"
+  ],
+  "author": "azbang",
+  "license": "MIT"
+}
